@@ -6,12 +6,12 @@ import (
 )
 
 type Config struct {
-	GitHubToken     string
-	GitHubCommitSha       string
-	GitHubRepoOwner     string
-	GitHubRepoName     string
-	GitHubIssueTitle     string
-	GitHubIssueBody       string
+	GitHubToken      string
+	GitHubCommitSha  string
+	GitHubRepoOwner  string
+	GitHubRepoName   string
+	GitHubIssueTitle string
+	GitHubIssueBody  string
 }
 
 func (config *Config) Init() error {
