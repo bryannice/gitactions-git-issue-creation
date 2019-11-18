@@ -17,7 +17,9 @@ RUN git clone https://github.com/bryan-nice/git-issue-creation.git && \
     cd git-issue-creation && \
     git checkout ${BRANCH}
 
-RUN go get ./... && \
+RUN cd git-issue-creation && \
+    go mod download && \
+    go get ./... && \
     go install ./...
 
 # -----------------------------------------------------------------------------
