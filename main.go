@@ -1,17 +1,17 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/bryan-nice/git-issue-creation/configuration"
 	"github.com/google/go-github/github"
-	"golang.org/x/oauth2"
-	"context"
-	"fmt"
-	"encoding/json"
 	"github.com/pkg/errors"
+	"golang.org/x/oauth2"
 	"log"
 )
 
-func main(){
+func main() {
 	var issueRequest *github.IssueRequest
 	var result []byte
 	var err error
@@ -33,7 +33,7 @@ func main(){
 	gitHubIssueBody := config.GitHubIssueBody
 
 	// Search string
-	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s",gitHubRepoOwner,gitHubRepoName), gitHubCommitSha)
+	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s", gitHubRepoOwner, gitHubRepoName), gitHubCommitSha)
 
 	// Authenticating and creating GitHub client
 	ctx := context.Background()
@@ -53,9 +53,9 @@ func main(){
 	if len(searchResults.Issues) == 0 {
 		// Create issue if not exist for the commit SHA
 		issueRequest = new(github.IssueRequest)
-		issueRequest.Title = &issueTitle
-		issueRequest.Body = &issueBody
-		issueCreated, _, err := client.Issues.Create(ctx, gitHubRepoOwner, gitHubRepository, issueRequest)
+		issueRequest.Title = &gitHubIssueTitle
+		issueRequest.Body = &gitHubIssueBody
+		issueCreated, _, err := client.Issues.Create(ctx, gitHubRepoOwner, gitHubRepoName, issueRequest)
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
 		}
