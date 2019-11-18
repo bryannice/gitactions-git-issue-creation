@@ -6,4 +6,4 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://bryannice/git-issue-creation:1.0.0'
+  image: 'docker://bryannice/git-issue-creation:1.0.1'
