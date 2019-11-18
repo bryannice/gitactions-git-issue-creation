@@ -1,0 +1,17 @@
+on: push
+name: Git Creation Demo
+jobs:
+  gitIssueCreation:
+    name: Git Creation Demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Git Creation Demo
+        uses: bryan-nice/git-issue-creation@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
+          GITHUB_REPO_OWNER: 'bryan-nice'
+          GITHUB_REPO_NAME: 'github-issue-creation'
+          GITHUB_ISSUE_TITLE: 'Demo''ing Git Issue Creation'
+          GITHUB_ISSUE_BODY: 'Demo''ing Git Issue Creation'

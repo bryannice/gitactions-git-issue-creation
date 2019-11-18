@@ -1,12 +1,9 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+name: 'Git Issue Creation'
+description: 'Git issue created by Git Actions'
+author: 'Bryan Nice'
+branding:
+  icon: 'message-square'
+  color: 'purple'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
+  image: 'docker://bryannice/git-issue-creation:1.0.2'
