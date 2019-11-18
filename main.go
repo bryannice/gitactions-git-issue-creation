@@ -59,13 +59,14 @@ func main() {
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
 		}
-		result, err = json.Marshal(issueCreated)
+		//fmt.Printf("%+v", issueCreated)
+		result, err = json.Marshal(issueCreated.HTMLURL)
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
 		}
 	} else {
 		// Return issue if it exists
-		result, err = json.Marshal(searchResults.Issues)
+		result, err = json.Marshal(searchResults.Issues[0].HTMLURL)
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
 		}
