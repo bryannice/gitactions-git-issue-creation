@@ -72,5 +72,5 @@ func main() {
 		}
 	}
 
-	fmt.Printf(string(result))
+	fmt.Printf(fmt.Sprintf("::set-output name=git_issue_url::%s",string(result)))
 }

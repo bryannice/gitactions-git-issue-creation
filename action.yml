@@ -5,8 +5,8 @@ branding:
   icon: 'message-square'
   color: 'purple'
 outputs:
-  gitIssueUrl:
+  git_issue_url:
     description: 'Url to the git issue created'
 runs:
   using: 'docker'
-  image: 'docker://bryannice/git-issue-creation:1.1.0'
+  image: 'docker://bryannice/git-issue-creation:1.1.1'
