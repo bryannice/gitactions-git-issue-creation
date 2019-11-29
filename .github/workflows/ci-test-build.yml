@@ -13,8 +13,8 @@ jobs:
       - name: Build Docker Image
         id: build_docker_image
         run: |
-          docker build --tag git-issue-creation:${GITHUB_HEAD_REF} \
-            --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}" \
+          docker build --tag git-issue-creation:${GITHUB_HEAD_REF:-${GITHUB_REF##*/}} \
+            --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
             build/docker
       - name: Print Environment Variables
         run: printenv
