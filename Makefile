@@ -17,6 +17,6 @@ fmt:
 
 .PHONY: build
 build: fmt
-	@go mod download
-    @go get ./...
-    @go install ./...
+	@go mod download && \
+     go get ./... && \
+     go install ./...
