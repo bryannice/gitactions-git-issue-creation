@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Print Environment Variables
+        run: printenv
       - name: Build Docker Image
         id: build_docker_image
         run: |
@@ -17,21 +19,18 @@ jobs:
             --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
             --build-arg "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}" \
             build/docker
-      - name: Print Environment Variables
-        run: printenv
-        if: failure()
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
         if: failure()
         env:
-          SLACK_CHANNEL: ci-cd-dev
+          SLACK_CHANNEL: git-issue-creation
           SLACK_COLOR: '#3278BD'
           SLACK_TITLE: 'Failed to build on GitHub Commit SHA ${{ github.sha }}'
           SLACK_MESSAGE: |
-            Failed to build on GitHub Commit SHA ${{ github.sha }}
-            Git Issue URL: ${{ steps.create_git_issue.outputs.git_issue_url }}
-          SLACK_USERNAME: senzing-api-server
+            Please review git actions log and trouble shoot the build failure.
+            The commit SHA is: _${{ github.sha }}_.
+          SLACK_USERNAME: git-issue-creation
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -39,3 +38,4 @@ jobs:
           GITHUB_ACTION: ${{ github.action }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_WORKFLOW: ${{ github.workflow }}
+

@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Print Environment Variables
+        run: printenv
       - name: Build Docker Image
         id: build_docker_image
         run: |
@@ -17,9 +19,6 @@ jobs:
             --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
             --build-arg "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}" \
             build/docker
-      - name: Print Environment Variables
-        run: printenv
-        if: failure()
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
