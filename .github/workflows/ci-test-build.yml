@@ -18,6 +18,7 @@ jobs:
             build/docker
       - name: Print Environment Variables
         run: printenv
+        if: failure()
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
