@@ -7,9 +7,9 @@ import (
 
 type Config struct {
 	GitHubToken      string
-	GitHubSha  string
-	GitHubOwner  string
-	GitHubRepository   string
+	GitHubSha        string
+	GitHubOwner      string
+	GitHubRepository string
 	GitHubIssueTitle string
 	GitHubIssueBody  string
 }

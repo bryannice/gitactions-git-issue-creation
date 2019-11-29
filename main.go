@@ -33,7 +33,7 @@ func main() {
 	gitHubIssueBody := config.GitHubIssueBody
 
 	// Search string
-	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s", gitHubOwner, gitHubRepository), gitHubCommitSha)
+	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s", gitHubOwner, gitHubRepository), gitHubSha)
 
 	// Authenticating and creating GitHub client
 	ctx := context.Background()
@@ -72,5 +72,5 @@ func main() {
 		}
 	}
 
-	fmt.Printf(fmt.Sprintf("::set-output name=git_issue_url::%s",string(result)))
+	fmt.Printf(fmt.Sprintf("::set-output name=git_issue_url::%s", string(result)))
 }
