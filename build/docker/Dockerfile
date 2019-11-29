@@ -4,6 +4,7 @@
 FROM golang:1.13.4-alpine3.10 as BUILD
 
 ARG GITHUB_HEAD_REF="master"
+ARG GITHUB_EVENT_NAME=""
 
 # Add github
 RUN apk update && \
@@ -19,7 +20,7 @@ RUN git clone https://github.com/bryan-nice/git-issue-creation.git
 # Checkout to target branch and if not master, then locally test
 # merging master into branch.
 WORKDIR /go/src/git-issue-creation
-RUN if [[ "${GITHUB_HEAD_REF}" != "master" ]]; then \
+RUN if [[ "${GITHUB_HEAD_REF}" != "master" && ${GITHUB_EVENT_NAME} != "push" ]]; then \
         git checkout ${GITHUB_HEAD_REF}; \
         #git merge master; \
     fi

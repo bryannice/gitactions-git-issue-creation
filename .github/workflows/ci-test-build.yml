@@ -15,6 +15,7 @@ jobs:
         run: |
           docker build --tag git-issue-creation:${GITHUB_HEAD_REF:-${GITHUB_REF##*/}} \
             --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
+            --build-arg "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}" \
             build/docker
       - name: Print Environment Variables
         run: printenv

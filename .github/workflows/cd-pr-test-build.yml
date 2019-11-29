@@ -13,22 +13,12 @@ jobs:
       - name: Build Docker Image
         id: build_docker_image
         run: |
-          docker build --tag git-issue-creation:${GITHUB_HEAD_REF} \
-            --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}" \
+          docker build --tag git-issue-creation:${GITHUB_HEAD_REF:-${GITHUB_REF##*/}} \
+            --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
+            --build-arg "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}" \
             build/docker
-      - name: Create Git Issue on Build Failure
-        uses: bryan-nice/git-issue-creation@1.1.1
-        id: create_git_issue
-        if: failure()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_SHA: ${{ github.sha }}
-          GITHUB_OWNER: 'bryan-nice'
-          GITHUB_REPOSITORY: 'git-issue-creation'
-          GITHUB_ISSUE_TITLE: 'Failed to build on GitHub Commit SHA ${{ github.sha }}'
-          GITHUB_ISSUE_BODY: |
-            Please review git actions log and trouble shoot the build failure.
-            The commit SHA is: _${{ github.sha }}_.
+      - name: Print Environment Variables
+        run: printenv
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
