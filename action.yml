@@ -9,4 +9,4 @@ outputs:
     description: 'Url to the git issue created'
 runs:
   using: 'docker'
-  image: 'docker://bryannice/git-issue-creation:1.1.1'
+  image: 'docker://bryannice/git-issue-creation:2.0.0'
