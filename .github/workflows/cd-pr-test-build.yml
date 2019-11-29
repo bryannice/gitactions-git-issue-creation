@@ -19,6 +19,7 @@ jobs:
             build/docker
       - name: Print Environment Variables
         run: printenv
+        if: failure()
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
@@ -31,7 +32,7 @@ jobs:
             Failed to build on GitHub Commit SHA ${{ github.sha }}
             Git Issue URL: ${{ steps.create_git_issue.outputs.git_issue_url }}
           SLACK_USERNAME: senzing-api-server
-          SLACK_WEBHOOK: ${{ secrets.SLACK_NOTIFICATION }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF: ${{ github.ref }}
