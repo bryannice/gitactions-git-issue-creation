@@ -10,7 +10,8 @@ ARG GITHUB_EVENT_NAME="push"
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-        git
+        git \
+        make
 
 WORKDIR /go/src
 
@@ -26,9 +27,7 @@ RUN git checkout ${GITHUB_HEAD_REF}; \
     fi
 
 # Building go app
-RUN go mod download && \
-    go get ./... && \
-    go install ./...
+RUN make build
 
 # -----------------------------------------------------------------------------
 # Stage: BUILD
