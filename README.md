@@ -60,7 +60,7 @@ These are the environment variables that can be set to pass in additional inform
     </tr>
     <tr>
         <td>
-            GITHUB_COMMIT_SHA
+            GITHUB_SHA
         </td>
         <td>
             Yes
@@ -71,7 +71,7 @@ These are the environment variables that can be set to pass in additional inform
     </tr>
     <tr>
         <td>
-            GITHUB_REPO_OWNER
+            GITHUB_OWNER
         </td>
         <td>
             Yes
@@ -82,7 +82,7 @@ These are the environment variables that can be set to pass in additional inform
     </tr>
     <tr>
         <td>
-            GITHUB_REPO_NAME
+            GITHUB_REPOSITORY
         </td>
         <td>
             Yes

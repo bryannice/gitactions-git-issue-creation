@@ -26,14 +26,14 @@ func main() {
 
 	// Required variables to create an Issue
 	gitHubToken := config.GitHubToken
-	gitHubCommitSha := config.GitHubCommitSha
-	gitHubRepoOwner := config.GitHubRepoOwner
-	gitHubRepoName := config.GitHubRepoName
+	gitHubSha := config.GitHubSha
+	gitHubOwner := config.GitHubOwner
+	gitHubRepository := config.GitHubRepository
 	gitHubIssueTitle := config.GitHubIssueTitle
 	gitHubIssueBody := config.GitHubIssueBody
 
 	// Search string
-	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s", gitHubRepoOwner, gitHubRepoName), gitHubCommitSha)
+	searchString := fmt.Sprintf("repo:%s is:issue is:open %s", fmt.Sprintf("%s/%s", gitHubOwner, gitHubRepository), gitHubCommitSha)
 
 	// Authenticating and creating GitHub client
 	ctx := context.Background()
@@ -55,7 +55,7 @@ func main() {
 		issueRequest = new(github.IssueRequest)
 		issueRequest.Title = &gitHubIssueTitle
 		issueRequest.Body = &gitHubIssueBody
-		issueCreated, _, err := client.Issues.Create(ctx, gitHubRepoOwner, gitHubRepoName, issueRequest)
+		issueCreated, _, err := client.Issues.Create(ctx, gitHubOwner, gitHubRepository, issueRequest)
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
 		}

@@ -7,9 +7,9 @@ import (
 
 type Config struct {
 	GitHubToken      string
-	GitHubCommitSha  string
-	GitHubRepoOwner  string
-	GitHubRepoName   string
+	GitHubSha  string
+	GitHubOwner  string
+	GitHubRepository   string
 	GitHubIssueTitle string
 	GitHubIssueBody  string
 }
@@ -25,22 +25,22 @@ func (config *Config) Init() error {
 		config.GitHubToken = os.Getenv("GITHUB_TOKEN")
 	}
 
-	if os.Getenv("GITHUB_COMMIT_SHA") == "" {
-		err = errors.New("GITHUB_COMMIT_SHA must be set")
+	if os.Getenv("GITHUB_SHA") == "" {
+		err = errors.New("GITHUB_SHA must be set")
 	} else {
-		config.GitHubCommitSha = os.Getenv("GITHUB_COMMIT_SHA")
+		config.GitHubSha = os.Getenv("GITHUB_SHA")
 	}
 
-	if os.Getenv("GITHUB_REPO_OWNER") == "" {
-		err = errors.New("GITHUB_REPO_OWNER must be set")
+	if os.Getenv("GITHUB_OWNER") == "" {
+		err = errors.New("GITHUB_OWNER must be set")
 	} else {
-		config.GitHubRepoOwner = os.Getenv("GITHUB_REPO_OWNER")
+		config.GitHubOwner = os.Getenv("GITHUB_OWNER")
 	}
 
-	if os.Getenv("GITHUB_REPO_NAME") == "" {
-		err = errors.New("GITHUB_REPO_NAME must be set")
+	if os.Getenv("GITHUB_REPOSITORY") == "" {
+		err = errors.New("GITHUB_REPOSITORY must be set")
 	} else {
-		config.GitHubRepoName = os.Getenv("GITHUB_REPO_NAME")
+		config.GitHubRepository = os.Getenv("GITHUB_REPOSITORY")
 	}
 
 	if os.Getenv("GITHUB_ISSUE_TITLE") == "" {
