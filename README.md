@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Git Creation Demo
-        uses: bryan-nice/git-issue-creation@master
+        uses: bryannice/gitactions-git-issue-creation@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_COMMIT_SHA: ${{ github.sha }}
@@ -116,8 +116,10 @@ These are the environment variables that can be set to pass in additional inform
 </table>
 
 ## Reference
+
 * [Using environment variables](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables) lists the default environment variables set in Git Actions.
 * [Authenticating with the GITHUB_TOKEN](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token)
 
 ## License
+
 [GPLv3](LICENSE)
